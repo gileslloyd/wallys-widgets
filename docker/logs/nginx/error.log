@@ -1,9 +1,0 @@
-2019/10/06 10:51:12 [error] 6#6: *2 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.48.1, server: localhost, request: "GET / HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "localhost"
-2019/10/06 10:51:49 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
-2019/10/13 16:13:34 [emerg] 1#1: host not found in upstream "app" in /etc/nginx/conf.d/default.conf:26
-2019/10/13 16:16:09 [emerg] 1#1: host not found in upstream "app" in /etc/nginx/conf.d/default.conf:26
-2019/10/13 16:21:09 [emerg] 1#1: host not found in upstream "app" in /etc/nginx/conf.d/default.conf:26
-2019/10/13 17:00:06 [emerg] 1#1: host not found in upstream "app" in /etc/nginx/conf.d/default.conf:26
-2019/10/13 17:02:56 [emerg] 1#1: host not found in upstream "app" in /etc/nginx/conf.d/default.conf:26
-2019/10/13 17:06:35 [emerg] 1#1: host not found in upstream "app" in /etc/nginx/conf.d/default.conf:26
-2019/10/18 21:14:04 [emerg] 1#1: host not found in upstream "app" in /etc/nginx/conf.d/default.conf:26

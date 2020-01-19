@@ -28,7 +28,6 @@
         "prooph/pdo-snapshot-store": "^1.5",
         "slim/psr7": "^0.6.0",
         "akrabat/rka-content-type-renderer": "^1.0",
-        "php-amqplib/php-amqplib": "^2.10",
         "ramsey/uuid": "^3.8",
         "cableandcode/microservice-core": "dev-master"
 	},
