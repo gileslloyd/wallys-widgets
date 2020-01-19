@@ -19,5 +19,6 @@ class PackAllocationService
 	}
 
 	public function handle(WidgetOrderRequest $request): PackAllocationResponse
-	{}
+	{
+	}
 }
