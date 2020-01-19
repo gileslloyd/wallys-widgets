@@ -1,0 +1,2 @@
+2019/10/06 10:53:21 [error] 6#6: *2 directory index of "/var/www/vhosts/api/src/Api/Infrastructure/Delivery/API/" is forbidden, client: 192.168.96.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost"
+2019/10/06 10:53:23 [error] 6#6: *2 directory index of "/var/www/vhosts/api/src/Api/Infrastructure/Delivery/API/" is forbidden, client: 192.168.96.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost"

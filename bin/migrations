@@ -1,0 +1,5 @@
+#!/bin/bash
+
+COMMAND=$1
+
+../vendor/bin/doctrine-migrations --configuration=./migration-config.yml --db-configuration=../src/Wallys/Infrastructure/config/development/db.php migrations:$COMMAND
