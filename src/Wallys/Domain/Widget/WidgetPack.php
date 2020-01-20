@@ -6,25 +6,25 @@ namespace Widget;
 
 class WidgetPack
 {
-	private int $id;
+    private int $id;
 
-	private int $packSize;
+    private int $packSize;
 
-	public function __construct(int $packSize)
-	{
-		$this->packSize = $packSize;
-	}
+    public function __construct(int $packSize)
+    {
+        $this->packSize = $packSize;
+    }
 
-	public function getID(): int
-	{
-		return $this->id;
-	}
+    public function getID(): int
+    {
+        return $this->id;
+    }
 
-	/**
-	 * @return int
-	 */
-	public function getPackSize(): int
-	{
-		return $this->packSize;
-	}
+    /**
+     * @return int
+     */
+    public function getPackSize(): int
+    {
+        return $this->packSize;
+    }
 }

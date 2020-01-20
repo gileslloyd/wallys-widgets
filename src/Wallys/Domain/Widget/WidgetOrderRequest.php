@@ -6,18 +6,18 @@ namespace Widget;
 
 class WidgetOrderRequest
 {
-	private int $numberOfWidgets;
+    private int $numberOfWidgets;
 
-	public function __construct(int $numberOfWidgets)
-	{
-		$this->numberOfWidgets = $numberOfWidgets;
-	}
+    public function __construct(int $numberOfWidgets)
+    {
+        $this->numberOfWidgets = $numberOfWidgets;
+    }
 
-	/**
-	 * @return int
-	 */
-	public function getNumberOfWidgets(): int
-	{
-		return $this->numberOfWidgets;
-	}
+    /**
+     * @return int
+     */
+    public function getNumberOfWidgets(): int
+    {
+        return $this->numberOfWidgets;
+    }
 }
