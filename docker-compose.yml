@@ -14,7 +14,7 @@ services:
       - "app"
 
   app:
-     image: php:7.4-fpm-alpine
+     build: docker/app
      ports:
        - "9000:9000"
      volumes:
@@ -35,9 +35,9 @@ services:
        - widget-data:/var/lib/postgresql/data
        - ./docker/postgresql:/docker-entrypoint-initdb.d
      environment:
-       POSTGRES_USER: 'wallys'
+       POSTGRES_USER: 'wally'
        POSTGRES_PASSWORD: password
-       POSTGRES_DB: 'wally'
+       POSTGRES_DB: 'wallys'
 
 volumes:
     widget-data: {}
