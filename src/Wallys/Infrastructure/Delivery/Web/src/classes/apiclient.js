@@ -7,8 +7,8 @@ var ApiClient = {
         domain: 'http://localhost:8080/'
     },
 
-    get(url, callback) {
-        axios.get(this.config.domain+url).then(callback);
+    get(url, callback, error) {
+        axios.get(this.config.domain+url).then(callback).catch(error);
     },
 
     put(url, data, success, error) {

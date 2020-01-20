@@ -14,6 +14,10 @@
 
                         <input id="number_of_widgets" type="number" name="number_of_widgets" title="number_of_widgets" placeholder="How Many Widgets?" v-model="number_of_widgets" required autofocus>
 
+                        <p class="help is-danger" v-show="validationFailed">
+                            {{ error }}
+                        </p>
+
                         <button type="submit" class="btn btn-primary">Calculate Pack Allocation</button>
                     </form>
                 </div>
@@ -40,15 +44,22 @@
             return {
                 number_of_widgets: '',
                 resultIsVisible: false,
-                info: ''
+                info: '',
+                validationFailed: false,
+                error: '',
             }
         },
 
         methods: {
+            clearError() {
+                this.error = '';
+                this.validationFailed = true;
+            },
             calculatePackAllocation() {
                 let self = this;
                 this.info = 'Calculating....';
                 this.resultIsVisible = true;
+                this.clearError();
 
                 ApiClient.get(
                     'packs?widgets='+self.number_of_widgets,
@@ -57,7 +68,8 @@
                         self.number_of_widgets = '';
                     },
                     (error) => {
-                        self.error = error.response.data.body.error;
+                        this.resultIsVisible = false;
+                        self.error = error.response.data.errors[0].message;
                         self.validationFailed = true;
                     }
                 );

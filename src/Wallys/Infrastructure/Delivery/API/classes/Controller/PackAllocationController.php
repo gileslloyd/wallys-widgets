@@ -17,16 +17,31 @@ class PackAllocationController extends \Controller
 	{
 		try {
 			$packAllocation = $this->command_bus->handle(
-				new WidgetOrderRequest((int) $request->getQueryParams()['widgets'] ?? 0)
+				new WidgetOrderRequest($this->validateInput($request))
 			);
 
 			$api_response = new SuccessSingleResponse($packAllocation, 'Successful Pack Allocation');
 		} catch (\Exception $e) {
-			$api_response = new ErrorResponse('Failed to get Employees');
+			$response = $response->withStatus(400);
+			$api_response = new ErrorResponse('Failed to calculate pack allocation', 400);
 			$exception_string = get_class($e) . "[{$e->getFile()}:{$e->getLine()}]";
-			$api_response->addError(new ErrorDetails(strval($e->getCode()), $e->getMessage(), $exception_string));
+			$api_response->addError(new ErrorDetails('400', $e->getMessage(), $exception_string));
 		}
 
 		return $this->renderer->render($request, $response, $api_response->toArray());
+	}
+
+	private function validateInput(Request $request): int
+	{
+		if (!isset($request->getQueryParams()['widgets'])) {
+			throw new \Exception('You must provide the number of widgets required');
+		}
+
+		$requiredWidgets = (int) $request->getQueryParams()['widgets'];
+		if ($requiredWidgets < 1) {
+			throw new \Exception('The number of widgets required must be a positive number');
+		}
+
+		return $requiredWidgets;
 	}
 }
