@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Widget;
 
-class PackAllocationResponse
+use Response\ToArrayInterface;
+
+class PackAllocationResponse implements ToArrayInterface
 {
 	private int $requestedWidgets;
 
@@ -48,5 +50,32 @@ class PackAllocationResponse
 		}
 
 		return $totalWidgets;
+	}
+
+	public function toArray(): array
+	{
+		return [
+			'requestedWidgets' => $this->requestedWidgets,
+			'allocatedPacks' => $this->getPackAllocationAsArray(),
+			'totalWidgets' => $this->getTotalWidgets(),
+		];
+	}
+
+	private function getPackAllocationAsArray(): array
+	{
+		$packs = [];
+
+		foreach ($this->allocatedPacks as $pack) {
+			if (!isset($packs[$pack->getPackSize()])) {
+				$packs[$pack->getPackSize()] = [
+					'packSize' => $pack->getPackSize(),
+					'number' => 0,
+				];
+			}
+
+			$packs[$pack->getPackSize()]['number']++;
+		}
+
+		return $packs;
 	}
 }

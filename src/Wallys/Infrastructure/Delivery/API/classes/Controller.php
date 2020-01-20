@@ -20,16 +20,10 @@ abstract class Controller
 	 */
 	protected $renderer;
 
-	/**
-	 * @var \Message\MessageBus
-	 */
-	protected $message_bus;
-
 	public function __construct()
 	{
 		$this->command_bus = CommandBus::instance();
 		$this->container = \DI\Container::instance();
 		$this->renderer = new Renderer();
-		$this->message_bus = $this->container->get('message_bus');
 	}
 }

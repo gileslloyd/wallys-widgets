@@ -23,7 +23,7 @@ services:
      working_dir: /var/www/vhosts/app
      environment:
        - ENV=development
-       - API_KEY=C6E84D247E2D81B5B45D6D2D229D9
+       - API_KEY=49667D4B53178C27836C56A19EA38
      depends_on:
        - db
 
