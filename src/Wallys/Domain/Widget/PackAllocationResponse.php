@@ -10,18 +10,14 @@ class PackAllocationResponse
 
 	private array $allocatedPacks;
 
-	private int $totalWidgets;
-
 	/**
 	 * @param int $requestedWidgets
 	 * @param WidgetPack[] $allocatedPacks
-	 * @param int $totalWidgets
 	 */
-	public function __construct(int $requestedWidgets, array $allocatedPacks, int $totalWidgets)
+	public function __construct(int $requestedWidgets, array $allocatedPacks)
 	{
 		$this->requestedWidgets = $requestedWidgets;
 		$this->allocatedPacks = $allocatedPacks;
-		$this->totalWidgets = $totalWidgets;
 	}
 
 	/**
@@ -45,6 +41,12 @@ class PackAllocationResponse
 	 */
 	public function getTotalWidgets(): int
 	{
-		return $this->totalWidgets;
+		$totalWidgets = 0;
+
+		foreach ($this->allocatedPacks as $pack) {
+			$totalWidgets += $pack->getPackSize();
+		}
+
+		return $totalWidgets;
 	}
 }

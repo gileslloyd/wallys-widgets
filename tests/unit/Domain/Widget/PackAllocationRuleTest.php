@@ -55,6 +55,8 @@ class PackAllocationRuleTest extends PHPUnit\Framework\TestCase
 			[251, 0, 1, 0, 0, 0],
 			[501, 1, 1, 0, 0, 0],
 			[12001, 1, 0, 0, 1, 2],
+			[752, 0, 0, 1, 0, 0],
+			[15521, 1, 1, 0, 0, 3],
 		];
 	}
 }

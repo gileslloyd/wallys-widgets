@@ -46,30 +46,17 @@ class FeatureContext implements Context
 	/**
 	 * @Then /^I should be allocated (.*) packs of (\d+)$/
 	 */
-	public function iShouldBeAllocatedPacksOf($number_of_250, $arg1)
+	public function iShouldBeAllocatedPacksOf($expectedAllocation, $packSize)
 	{
-		$number_of_250_packs = $this->getNumberOfPacksOfSize(250);
-		if ($number_of_250_packs !== $arg1) {
-			throw new \Exception(
-				sprintf('We\'ve been allocated %s packs of 250 instead of %s', $number_of_250_packs, $arg1)
-			);
-		}
-	}
+		$actualAllocation = $this->getNumberOfPacksOfSize($packSize);
 
-	/**
-	 * @Given /^(.*) packs of (\d+)$/
-	 */
-	public function packsOf($number_of_packsize, $arg1)
-	{
-		$number_of_packs = $this->getNumberOfPacksOfSize($number_of_packsize);
-
-		if ($number_of_packs !== $arg1) {
+		if ($actualAllocation != $expectedAllocation) {
 			throw new \Exception(
 				sprintf(
 					'We\'ve been allocated %s packs of %s instead of %s',
-					$number_of_packs,
-					$number_of_packsize,
-					$arg1
+					$actualAllocation,
+					$packSize,
+					$expectedAllocation
 				)
 			);
 		}

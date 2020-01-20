@@ -32,17 +32,29 @@ class PackAllocationRule
 
 	private function getNext(array $packSizes, int $requiredWidgets): array
 	{
-		foreach ($packSizes as $key => $size) {
-			if (($this->totalWidgets + $size) >= $requiredWidgets) {
-				return [$size];
-			} else if (isset($packSizes[$key+1]) && (($this->totalWidgets + $packSizes[$key+1]) >= $requiredWidgets)) {
-				return [$packSizes[$key+1]];
-			} else if ($multiple = $this->getMultiple($packSizes, $requiredWidgets)) {
+		$single = $this->getSingle($packSizes, $requiredWidgets);
+		$multiple = $this->getMultiple($packSizes, $requiredWidgets);
+
+		if ($single && $multiple) {
+			if ($this->getExcessWidgets($requiredWidgets, [$single]) > $this->getExcessWidgets($requiredWidgets, $multiple)) {
 				return $multiple;
 			}
 
-			return [$packSizes[count($packSizes)-1]];
+			return [$single];
 		}
+
+		return [$packSizes[count($packSizes)-1]];
+	}
+
+	private function getSingle(array $packSizes, int $requiredWidgets): ?int
+	{
+		foreach ($packSizes as $key => $size) {
+			if (($this->totalWidgets + $size) >= $requiredWidgets) {
+				return $size;
+			}
+		}
+
+		return null;
 	}
 
 	private function getMultiple(array $packSizes, int $requiredWidgets): ?array
@@ -56,5 +68,10 @@ class PackAllocationRule
 		}
 
 		return null;
+	}
+
+	private function getExcessWidgets(int $requiredWidgets, array $packs): int
+	{
+		return array_sum($packs) - $requiredWidgets - $this->totalWidgets;
 	}
 }
