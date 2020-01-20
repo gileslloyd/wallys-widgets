@@ -30,7 +30,7 @@
 </template>
 
 <script>
-    import APIClient from './../classes/apiclient.js';
+    import ApiClient from './../classes/apiclient.js';
 
     export default {
 
@@ -38,27 +38,37 @@
 
         data() {
             return {
-                'number_of_widgets': '',
+                number_of_widgets: '',
                 resultIsVisible: false,
-                info: 'Calculating....'
+                info: ''
             }
         },
 
         methods: {
             calculatePackAllocation() {
                 let self = this;
+                this.info = 'Calculating....';
                 this.resultIsVisible = true;
 
-                Apiclient.get(
+                ApiClient.get(
                     'packs?widgets='+self.number_of_widgets,
                     (response) => {
-                        console.log(response);
+                        self.displayPackAllocation(response.data.data.allocatedPacks);
+                        self.number_of_widgets = '';
                     },
                     (error) => {
                         self.error = error.response.data.body.error;
                         self.validationFailed = true;
                     }
                 );
+            },
+            displayPackAllocation(packs) {
+                let info = 'The following packs will fulfill this order: ';
+                for (let pack in packs) {
+                    info += packs[pack].number + 'x' + packs[pack].packSize + ', ';
+                }
+
+                this.info = info.slice(0, -2);
             }
         }
 

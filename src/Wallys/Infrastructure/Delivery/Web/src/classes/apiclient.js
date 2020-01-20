@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-axios.defaults.headers.common['x-api-key'] = 'C6E84D247E2D81B5B45D6D2D229D9';
+axios.defaults.headers.common['x-api-key'] = '49667D4B53178C27836C56A19EA38';
 
 var ApiClient = {
     config: {
-        domain: 'http://localhost:8082/'
+        domain: 'http://localhost:8080/'
     },
 
     get(url, callback) {
