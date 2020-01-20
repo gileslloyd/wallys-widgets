@@ -6,6 +6,7 @@ services:
     image: nginx:alpine
     ports:
      - "8080:8080"
+     - "80:80"
     volumes:
      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
      - .:/var/www/vhosts/app
