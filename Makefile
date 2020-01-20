@@ -10,7 +10,7 @@ setup:
 	@make migrations C=migrate
 
 test:
-# 	@docker-compose exec app ./vendor/bin/phpunit
+	@docker-compose exec app ./vendor/bin/phpunit
 	@docker-compose exec app ./vendor/bin/behat tests/behavioural/features/orderFulfillment.feature
 
 standards:
