@@ -11,6 +11,7 @@ setup:
 
 test:
 	@docker-compose exec app ./vendor/bin/phpunit
+	@docker-compose exec app ./vendor/bin/behat tests/behavioural/features/orderFulfillment.feature
 
 standards:
 	@docker-compose exec app ./vendor/bin/phpcs --standard=PSR12 --ignore=./src/Recruitment/Infrastructure/Delivery ./src

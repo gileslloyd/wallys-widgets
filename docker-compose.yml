@@ -14,7 +14,7 @@ services:
       - "app"
 
   app:
-     image: php:7.4-fpm-alpine
+     build: docker/app
      ports:
        - "9000:9000"
      volumes:
@@ -23,11 +23,11 @@ services:
      working_dir: /var/www/vhosts/app
      environment:
        - ENV=development
-       - API_KEY=C6E84D247E2D81B5B45D6D2D229D9
+       - API_KEY=49667D4B53178C27836C56A19EA38
      depends_on:
        - db
 
-  user-db:
+  db:
      image: postgres:10.2-alpine
      ports:
        - "5432:5432"
@@ -35,9 +35,9 @@ services:
        - widget-data:/var/lib/postgresql/data
        - ./docker/postgresql:/docker-entrypoint-initdb.d
      environment:
-       POSTGRES_USER: 'wallys'
+       POSTGRES_USER: 'wally'
        POSTGRES_PASSWORD: password
-       POSTGRES_DB: 'wally'
+       POSTGRES_DB: 'wallys'
 
 volumes:
     widget-data: {}

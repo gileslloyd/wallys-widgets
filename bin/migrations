@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/bin/ash
 
 COMMAND=$1
-
-../vendor/bin/doctrine-migrations --configuration=./migration-config.yml --db-configuration=../src/Wallys/Infrastructure/config/development/db.php migrations:$COMMAND
+cd /var/www/vhosts/app
+./vendor/bin/doctrine-migrations --configuration=./bin/migration-config.yml --db-configuration=./src/Wallys/Infrastructure/config/development/db.php migrations:$COMMAND
